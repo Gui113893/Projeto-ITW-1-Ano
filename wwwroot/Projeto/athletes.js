@@ -5,7 +5,7 @@ var vm = function () {
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/athletes');
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Olympic Games editions List';
+    self.displayName = 'Olympic Games Athletes List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -40,13 +40,14 @@ var vm = function () {
 
         for (var i = 1; i <= size; i++)
             list.push(i + step);
-        return list;
+        return list
     };
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getGames...');
+        console.log('CALL: getAthletes...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+        console.log(composedUri)
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();

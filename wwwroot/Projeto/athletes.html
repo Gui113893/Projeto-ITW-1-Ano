@@ -47,7 +47,7 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Games: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Athletes: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
@@ -77,12 +77,12 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">olympedia.org</th>
+                    <!--<th scope="col">olympedia.org</th>-->
                     <th scope="col">Sexo</th>
-                    <th scope="col">Altura</th>
+                    <!--<th scope="col">Altura</th>
                     <th scope="col">Peso</th>
                     <th scope="col">Data de nascimento</th>
-                    <th scope="col">Data de morte</th>
+                    <th scope="col">Data de morte</th>-->
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
@@ -90,14 +90,14 @@
                 <tr>
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:olympedia.org"></td>
+                    <!----<td class="align-middle" data-bind="text:OlympediaLink"></td>-->
                     <td class="align-middle" data-bind="text:Sex"></td>
-                    <td class="align-middle" data-bind="text:Altura"></td>
-                    <td class="align-middle" data-bind="text:Peso"></td>
-                    <td class="align-middle" data-bind="text:Data de nascimento"></td>
-                    <td class="align-middle" data-bind="text:Data de morte"></td>
+                    <!--<td class="align-middle" data-bind="text:Height"></td>-->
+                    <!--<td class="align-middle" data-bind="text:Weight"></td>
+                    <td class="align-middle" data-bind="text:BornDate"></td>
+                    <td class="align-middle" data-bind="text:DiedDate"></td>-->
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./gameDetails.html?id=' + Id }">
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./athletesDetails.html?id=' + Id }">
                             <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                         </a>
                         <button class="btn btn-default btn-xs">
