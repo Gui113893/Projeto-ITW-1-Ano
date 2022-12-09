@@ -47,7 +47,6 @@ var vm = function () {
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
@@ -60,14 +59,12 @@ var vm = function () {
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
 
-            athletes_array = [];
+            athletes_FullDetailsdata = [];
             for (i=0; i<data.Records.length; i++){
                 var Id = data.Records[i].Id;
-                var composedUri2 = self.baseUri() + "/FullDetails?id=" + Id;
+                var composedUri2 = `${self.baseUri()}/FullDetails?id=${Id}`;
                 ajaxHelper(composedUri2, 'GET').done(function(data){
-                    console.log(data.Id);
-                    console.log(data.Name);
-                    console.log(data.Sex);
+                    athletes_FullDetailsdata.push(data);
                 });
             };
         });
