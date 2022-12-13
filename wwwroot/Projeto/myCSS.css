@@ -36,3 +36,8 @@
 li.page-item a {
     font-size: 0.85rem;
 }
+
+img.img-thumbnail {
+    width: 250px;
+    height: 300px;
+}
