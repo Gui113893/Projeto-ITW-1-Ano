@@ -58,15 +58,6 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
-
-            athletes_FullDetailsdata = [];
-            for (i=0; i<data.Records.length; i++){
-                var Id = data.Records[i].Id;
-                var composedUri2 = `${self.baseUri()}/FullDetails?id=${Id}`;
-                ajaxHelper(composedUri2, 'GET').done(function(data){
-                    athletes_FullDetailsdata.push(data);
-                });
-            };
         });
     };
 
