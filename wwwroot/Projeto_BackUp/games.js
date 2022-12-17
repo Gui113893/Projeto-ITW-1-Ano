@@ -1,11 +1,11 @@
-// ViewModel KnockOut
+﻿// ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/athletes');
+    self.baseUri = ko.observable('http://192.168.160.58/Olympics/api/games');
     //self.baseUri = ko.observable('http://localhost:62595/api/drivers');
-    self.displayName = 'Olympic Games Athletes List';
+    self.displayName = 'Olympic Games Editions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -40,12 +40,12 @@ var vm = function () {
 
         for (var i = 1; i <= size; i++)
             list.push(i + step);
-        return list
+        return list;
     };
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getAthletes...');
+        console.log('CALL: getGames...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
@@ -58,10 +58,6 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
-
-            $(".see_details").click(function () {
-                console.log("yau");
-            });
         });
     };
 
@@ -133,5 +129,4 @@ $(document).ready(function () {
 
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
-
-});
+})
