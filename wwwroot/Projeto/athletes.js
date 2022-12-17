@@ -43,6 +43,10 @@ var vm = function () {
         return list
     };
 
+    self.selectedAthlete = ko.observable({});
+    self.Born = ko.observable('');
+    self.Died = ko.observable('');
+
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getAthletes...');
@@ -58,12 +62,32 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
-
-            $(".see_details").click(function () {
-                console.log("yau");
-            });
         });
     };
+
+    self.showAthleteDetails = function(athlete) {
+        ajaxHelper(`http://192.168.160.58/Olympics/api/Athletes/FullDetails?id=${athlete.Id}`, "GET").done(function(data){
+            self.selectedAthlete(data);
+
+            if (data.BornDate == null){
+                self.Born("null / " + data.BornPlace);
+            } else {
+                self.Born(data.BornDate.slice(0, 10) + " / " + data.BornPlace);
+            };
+
+
+            if (data.DiedDate == null) {
+                self.Died("null / " + data.DiedPlace);
+            } else {
+                self.Died(data.DiedDate.slice(0, 10) + " / " + data.DiedPlace);
+            };
+            
+
+            console.log(data);
+            $("#athletesModal").modal("show");
+        });
+    };
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
