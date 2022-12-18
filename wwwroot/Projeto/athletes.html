@@ -71,7 +71,12 @@
         <div class="card-container" id="athlete-container" data-bind="foreach: records">
             <div class="card" id="athlete">
                 <div class="card-body">
-                    <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: Photo, alt: Name}, click: $parent.showAthleteDetails" />
+                    <!-- ko if: Photo == null-->
+                    <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: '/wwwroot/Projeto/Images/default_athlete.png'}, click: $parent.showAthleteDetails" />
+                    <!-- /ko -->
+                    <!-- ko if: Photo != null-->
+                    <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: Photo}, click: $parent.showAthleteDetails" />
+                    <!-- /ko -->
                     <p class="card-text">
                     <span data-bind="text: Name"></span><br>                     
                     <strong>Sex:</strong> <span data-bind="text: Sex"></span><br>

@@ -81,7 +81,14 @@ img.img-thumbnail {
     border-radius: 50%; 
     width: 100%; 
     height: 200px; 
+    transition: transform 0.2s ease-in-out;
 }
+
+#athlete_photo:hover {
+    transform: scale(1.1);
+}
+
+
 
 #athlete-container {
     display: flex;

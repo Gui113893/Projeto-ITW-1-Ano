@@ -42,6 +42,7 @@ var vm = function () {
             list.push(i + step);
         return list
     };
+    
 
     self.selectedAthlete = ko.observable({});
     self.Born = ko.observable('');
@@ -66,6 +67,7 @@ var vm = function () {
     };
 
     self.showAthleteDetails = function(athlete) {
+
         ajaxHelper(`http://192.168.160.58/Olympics/api/Athletes/FullDetails?id=${athlete.Id}`, "GET").done(function(data){
             self.selectedAthlete(data);
 
