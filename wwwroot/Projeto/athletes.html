@@ -64,9 +64,9 @@
             </div>
         </div>
         <!-- /ko -->
-
+        
         <!-- Athletes -->
-        <h3>Athletes</h3>
+        <h3 class="text-center">Athletes</h3>
         <!-- Add a card for each athlete -->
         <div class="card-container" id="athlete-container" data-bind="foreach: records">
             <div class="card" id="athlete">
@@ -77,10 +77,10 @@
                     <!-- ko if: Photo != null-->
                     <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: Photo}, click: $parent.showAthleteDetails" />
                     <!-- /ko -->
-                    <p class="card-text">
-                    <span data-bind="text: Name"></span><br>                     
-                    <strong>Sex:</strong> <span data-bind="text: Sex"></span><br>
-                    </p>
+                    <div class="row card-text">
+                        <div class="text-center" data-bind="text: Name"></div>                     
+                        <div><strong>Sex:</strong><span data-bind="text: Sex"></span></div>
+                    </div>
                     <button class="btn btn-default btn-xs">
                         <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
                     </button>
