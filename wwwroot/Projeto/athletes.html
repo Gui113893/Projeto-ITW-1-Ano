@@ -68,24 +68,29 @@
         <!-- Athletes -->
         <h3 class="text-center">Athletes</h3>
         <!-- Add a card for each athlete -->
-        <div class="card-container" id="athlete-container" data-bind="foreach: records">
-            <div class="card" id="athlete">
+        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: records">
+            <div class="card col-md-2 col-sm-3" id="athlete">
                 <div class="card-body">
                     <!-- ko if: Photo == null-->
-                    <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: '/wwwroot/Projeto/Images/default_athlete.png'}, click: $parent.showAthleteDetails" />
+                    <img class="card-img-top rounded-circle" id="athlete_photo" data-bind="attr: { src: '/wwwroot/Projeto/Images/default_athlete.png'}, click: $parent.showAthleteDetails" />
                     <!-- /ko -->
                     <!-- ko if: Photo != null-->
-                    <img class="card-img-top" id="athlete_photo" data-bind="attr: { src: Photo}, click: $parent.showAthleteDetails" />
+                    <img class="card-img-top rounded-circle" id="athlete_photo" data-bind="attr: { src: Photo}, click: $parent.showAthleteDetails" />
                     <!-- /ko -->
                     <div class="row card-text">
-                        <div class="text-center" data-bind="text: Name"></div>                     
+                        <!--ko if: Name.length > 18-->
+                        <div class="text-center col-md-12" data-bind="text: Name.slice(0,15) + '...'"></div> 
+                        <!--/ko-->
+                        <!--ko if: Name.length <= 18-->
+                        <div class="text-center col-md-12" data-bind="text: Name"></div> 
+                        <!--/ko-->                                        
                         <div><strong>Sex:</strong><span data-bind="text: Sex"></span></div>
                     </div>
                     <button class="btn btn-default btn-xs">
                         <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
                     </button>
                 </div>
-            </div>    
+            </div>   
         </div>
   
     </div>
@@ -163,3 +168,5 @@
     <script src="athletes.js"></script>
 </body>
 </html>
+
+

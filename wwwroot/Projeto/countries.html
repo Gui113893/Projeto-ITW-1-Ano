@@ -66,15 +66,21 @@
         <!-- /ko -->
 
 
-        <div class="card-container" id="country-container"data-bind="foreach: records">
-            <div class="card" id="country">
+        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: records">
+            <div class="card col-md-2 col-sm-3" id="country">
                <div class="card-body">
+                   <!--ko if: Name.length > 18 -->
+                  <h5 class="card-title" data-bind="text:Name.slice(0,15) + '...'"></h5>
+                  <!-- /ko -->
+                  <!--ko if: Name.length <= 18-->
                   <h5 class="card-title" data-bind="text:Name"></h5>
+                  <!-- /ko -->
                   <p class="card-text">IOC: <span data-bind="text:IOC"></span></p>
                   <div data-bind="visible: Flag != '' && Flag != null">
-                     <img class="card-img-top"  id="flag" data-bind="attr:{src: Flag}">
+                     <img class="card-img-top" id="flag" data-bind="attr:{src: Flag}">
                   </div>
-                  <div class="card-footer">
+               </div>
+               <div class="card-footer">
                      <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./gameDetails.html?id=' + Id }">
                         <i class="fa fa-eye" title="Selecione para ver detalhes"></i>
                      </a>
@@ -82,7 +88,6 @@
                         <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
                      </button>
                   </div>
-               </div>
             </div>
         </div>
 
