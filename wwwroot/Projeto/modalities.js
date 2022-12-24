@@ -43,6 +43,9 @@ var vm = function () {
         return list
     };
 
+    self.selectedModality = ko.observable({});
+    self.competitions = ko.observableArray([]);
+
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getModalities...');
@@ -58,6 +61,75 @@ var vm = function () {
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
+        });
+    };
+
+    self.showModalityDetails = function(modality) {
+        ajaxHelper(`http://192.168.160.58/Olympics/api/modalities/${modality.Id}`, "GET").done(function(data){
+            self.selectedModality(data);
+            self.competitions(data.Modalities);
+
+            $("#modalitiesModal").modal("show");
+
+
+            let chart;
+
+            function generateChartData() {
+
+                if (chart) {
+                    chart.destroy();
+                }
+
+                // Generate chart data
+                var data = self.competitions().map(function(competition) { return competition.Results; });
+                var labels = self.competitions().map(function(competition) { return competition.Name; });
+
+                // Chart options
+                var options = {
+                    scales: {
+                        xAxes: [{
+                          id: 'x-axis-0',
+                          ticks: {
+                            beginAtZero: true
+                          }
+                        }],
+                        yAxes: [{
+                          id: 'y-axis-0',
+                          position: 'left',
+                          // Set y-axis labels to be visible
+                          scaleLabel: {
+                            display: true
+                          },
+                          // Set y-axis label font size and color
+                          ticks: {
+                            fontSize: 14,
+                            fontColor: '#000'
+                          }
+                        }]
+                    }
+                };
+
+                // Initialize chart
+                var ctx = document.getElementById('barChart').getContext('2d');
+                chart = new Chart(ctx, {
+                  type: 'horizontalBar',
+                  data: {
+                    labels: labels,
+                    datasets: [{
+                      label: 'Results',
+                      data: data,
+                      backgroundColor: '#2649c7',
+                      xAxisID: "x-axis-0",
+                      yAxisID: "y-axis-0"
+                    }]
+                  },
+                  options: options
+                });
+            };
+        
+            $('#modalitiesModal').on('shown.bs.modal', function() {
+                generateChartData();
+            });
         });
     };
 

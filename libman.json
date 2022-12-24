@@ -25,6 +25,11 @@
     {
       "destination": "wwwroot/lib/knockout/dist/",
       "library": "knockout@3.5.1"
+    },
+
+    {
+      "destination": "wwwroot/lib/chartjs/dist",
+      "library": "Chart.js@4.0.1"
     }
 
   ]

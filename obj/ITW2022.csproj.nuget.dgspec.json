@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\ITW2022\\ITW2022.csproj": {}
+    "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\Projeto\\ITW2022.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\ITW2022\\ITW2022.csproj": {
+    "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\Projeto\\ITW2022.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\ITW2022\\ITW2022.csproj",
+        "projectUniqueName": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\Projeto\\ITW2022.csproj",
         "projectName": "ITW2022",
-        "projectPath": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\ITW2022\\ITW2022.csproj",
+        "projectPath": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\Projeto\\ITW2022.csproj",
         "packagesPath": "C:\\Users\\gui28\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\ITW2022\\obj\\",
+        "outputPath": "C:\\Users\\gui28\\OneDrive\\Ambiente de Trabalho\\LEI\\1ºAno\\ITW\\Projeto\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gui28\\AppData\\Roaming\\NuGet\\NuGet.Config",

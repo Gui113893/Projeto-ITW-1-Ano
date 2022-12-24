@@ -181,3 +181,27 @@ h1 {
     margin-right: 10px;
 }
   
+
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scroll bar */
+    background-color: #f5f5f5; /* Background color of the scroll bar */
+  }
+  
+  /* Style the thumb (the part of the scroll bar that you can drag) */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* Rounded corners of the thumb */
+    background-color: #2649c7; /* Color of the thumb */
+}
+
+.competition {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+}
+
+.competition:hover {
+  background-color: #2649c7;
+  color: white;
+}

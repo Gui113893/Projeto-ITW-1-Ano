@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/wwwroot/lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/wwwroot/lib/jquery-ui/dist/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="myCSS.css" />
 </head>
 <body>
@@ -72,7 +73,8 @@
               <span class="ml-2" data-bind="text: Name"></span>
             </li>
             <!-- /ko -->
-        </ul>          
+        </ul>       
+           
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -89,6 +91,34 @@
             </div>
         </div>
     </div>
+
+    <div class="modal modal-lg fade" id="modalitiesModal" tabindex="-1" aria-labelledby="modalitiesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modalitiesModalLabel" data-bind="text: selectedModality().Name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img data-bind="attr: { src: selectedModality().Photo }" class="rounded-circle" alt="Modality Photo" style="height: 200px; width: 200px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                    </div>
+                    <div class="text-center"><h2 data-bind="text: selectedModality().Name + ' Competitions'"></h2></div>
+                    <canvas id="barChart"></canvas>
+                    <hr>
+                    <ul data-bind="foreach: competitions">
+                        <li class="list-group-item competition d-flex align-items-center" data-bind="click: $parent.showCompetitionDetails">
+                            <span data-bind="text: Name"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container small">
@@ -102,6 +132,14 @@
     <script src="/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/wwwroot/lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="/wwwroot/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/wwwroot/lib/jquery-ui/dist/jquery-ui.min.js"></script><div class="modal-body">
+        <div class="text-center">
+            <img data-bind="attr: { src: selectedModality().Photo }" class="rounded-circle" alt="Modality Photo" style="height: 200px; width: 200px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+        </div>
+        <div class="text-center"><h2 data-bind="text: selectedModality().Name + ' Competitions'"></h2></div>
+        <canvas id="barChart"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="modalities.js"></script>
 </body>
 </html>
