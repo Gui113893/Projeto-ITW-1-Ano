@@ -205,3 +205,13 @@ h1 {
   background-color: #2649c7;
   color: white;
 }
+
+#fieldset_competitions {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+#legend_competitions {
+  margin-left: 10px;
+}

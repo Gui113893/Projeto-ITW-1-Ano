@@ -42,6 +42,4 @@
     $('#modalities-card').on('click', function() {
       window.location.href = 'modalities.html';
     });
-    
-
-})
+});
