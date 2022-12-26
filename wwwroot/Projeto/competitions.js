@@ -8,6 +8,7 @@ var vm = function () {
     self.displayName = 'Olympic Games Competitions List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
+    self.modalities = ko.observableArray([]);
     self.records = ko.observableArray([]);
     self.currentPage = ko.observable(1);
     self.pagesize = ko.observable(20);
@@ -43,6 +44,10 @@ var vm = function () {
         return list;
     };
 
+    self.selectedCompetition = ko.observable({});
+    self.participants = ko.observableArray([]);
+
+
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getCompetitions...');
@@ -50,16 +55,47 @@ var vm = function () {
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            self.records(data.Records);
             self.currentPage(data.CurrentPage);
             self.hasNext(data.HasNext);
             self.hasPrevious(data.HasPrevious);
+            self.records(data.Records);
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
             //self.SetFavourites();
+
+            // Iterate through the records
+            self.records().forEach(function(record) {
+                // Check if a modality with the same name already exists in the array
+                var modality = self.modalities().find(function(modality) {
+                  return modality.name === record.Modality;
+                });
+                // If the modality doesn't exist, create a new object for it
+                if (!modality) {
+                  modality = { name: record.Modality, competitions: [] };
+                  self.modalities().push(modality);
+                }
+                // Add the competition to the modality's array
+                modality.competitions.push(record);
+            });
+
+            self.modalities(self.modalities());
+            
+            $('.competition').click(function() {
+                // Get the competition id from the data attribute
+                var competitionId = $(this).data('competition-id');
+                ajaxHelper(`http://192.168.160.58/Olympics/api/competitions/${competitionId}`, "GET").done(function(data) {
+                    self.selectedCompetition(data);
+                    self.participants(data.Participant);
+
+                    $("#competitionsModal").modal("show");
+                });
+            });
         });
     };
+
+
+
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message

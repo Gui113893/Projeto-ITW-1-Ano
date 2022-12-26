@@ -12,7 +12,7 @@
       // Animate the scroll to the main content using jQuery's animate() function
       $('html, body').animate({
         scrollTop: mainContent.offset().top
-      }, 1); // 1 is the duration of the animation in milliseconds
+      }, 500); // 1 is the duration of the animation in milliseconds
     });
 
     $('.card').on('mouseenter', function() {

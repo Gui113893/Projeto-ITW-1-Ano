@@ -193,7 +193,7 @@ h1 {
     background-color: #2649c7; /* Color of the thumb */
 }
 
-.competition {
+.competition { /*competition item from modalities modal page*/
   color: #333;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -206,12 +206,33 @@ h1 {
   color: white;
 }
 
-#fieldset_competitions {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
+#card-modality {
+  transition: 0.3s;
+  border-radius: 5px;
 }
 
-#legend_competitions {
-  margin-left: 10px;
+#card-modality:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+#card-header-modality {
+  background-color: #f1f1f1;
+  border-radius: 5px 5px 0 0;
+}
+
+#card-header-modality h5 {
+  font-weight: bold;
+}
+
+#card-body-competitions {
+  padding: 20px;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  background-color: #2649c7;
+  color: white;
 }

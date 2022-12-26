@@ -41,7 +41,7 @@
         <div class="row small">
             <p class=" col-4 mr-auto pt-2">
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
-                <span data-bind="html: 'Games: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+                <span data-bind="html: 'Competitions: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
@@ -66,20 +66,25 @@
         </div>
         <!-- /ko -->
 
-        <div class="container">
-            <!-- ko foreach: records -->
-            <fieldset data-bind="attr: { 'data-modality': Modality }" id="fieldset_competitions">
-              <legend data-bind="text: Modality" id="legend_competitions"></legend>
-              <ul class="list-group" data-bind="foreach: $parent.records">
-                <!-- ko if: Modality === $parent.Modality -->
-                <li class="list-group-item competition d-flex align-items-center" data-bind="click: $parent.showCompetitionDetails">
-                  <span data-bind="text: Name"></span>
-                </li>
-                <!-- /ko -->
-              </ul>
-            </fieldset>
-            <!-- /ko -->
+        <div class="container" data-bind="foreach: modalities">
+            <div class="card mb-3" id="card-modality">
+                <div class="card-header text-center" id="card-header-modality">
+                    <h5 data-bind="text: name"></h5>
+                </div>
+                <div class="card-body" id="card-body-competitions">
+                    <ul class="list-group list-group-flush">
+                        <!-- ko foreach: competitions -->
+                        <li class="list-group-item competition d-flex align-items-center" data-bind="attr: { 'data-competition-id': Id }">
+                            <span data-bind="text: Name"></span>
+                        </li>
+                        <!--/ko-->
+                    </ul>
+                </div>
+            </div>
         </div>
+          
+          
+               
     </div>
 
     <!-- Modal -->
@@ -93,6 +98,39 @@
                 </div>
                 <div class="modal-body text-center">
                     <i class="fa fa-spin fa-3x fa-refresh"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal modal-lg fade" id="competitionsModal" tabindex="-1" aria-labelledby="competitionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="competitionsModalLabel" data-bind="text: selectedCompetition().Name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row my-1">
+                        <div class="col-3"><b>Name</b></div><div class="col-9" data-bind="text: selectedCompetition().Name"></div>
+                    </div>
+                    <div class="row my-1">
+                        <div class="col-3"><b>Modality</b></div><div class="col-9" data-bind="text: selectedCompetition().Modality"></div>
+                    </div>
+                    <div class="row border-bottom  my-1" data-bind="visible: selectedCompetition().Photo != '' && selectedCompetition().Photo != null">
+                        <div class="col-3 photo"><b>Photo</b></div><div class="small col-9">
+                            <img class="img-thumbnail" data-bind="attr:{src: selectedCompetition().Photo}"><br />                        </div>
+                    </div>
+
+                    <div class="text-center"><b><h4>List of Games that had this competition</h4></b></div>
+                    <ul data-bind="foreach: participants">
+                        <li class="list-group-item d-flex align-items-center" >
+                            <span data-bind="text: Name"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
