@@ -47,8 +47,8 @@ li.page-item a {
 }
 
 img.img-thumbnail {
-    width: 250px;
     height: 300px;
+    object-fit: contain;
 }
 
 #country {
@@ -59,8 +59,14 @@ img.img-thumbnail {
  
 
 #flag {
-    height: 125px;
-  }
+  height: 125px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#flag:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 #athlete {
     margin: 10px;
@@ -72,7 +78,7 @@ img.img-thumbnail {
 #athlete_photo {
     height: 175px;
     transition: transform 0.2s ease-in-out;
-  }
+}
   
   @media (max-width: 500px) {
     #athlete_photo {
@@ -84,7 +90,20 @@ img.img-thumbnail {
   
 #athlete_photo:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
+
+#athlete_photo_games {
+  height: 100px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#athlete_photo_games:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
 
 
 #banner {
@@ -124,6 +143,7 @@ h1 {
 
 #logo_game {
     height: 250px;
+    object-fit: contain;
 }
 
 .modalities {
@@ -236,3 +256,23 @@ h1 {
   background-color: #2649c7;
   color: white;
 }
+
+#medal {
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2); 
+}
+
+#card-games {
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+#card-games:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+

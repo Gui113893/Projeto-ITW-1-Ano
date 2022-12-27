@@ -81,10 +81,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-          
-          
-               
+        </div>   
     </div>
 
     <!-- Modal -->
@@ -102,7 +99,7 @@
             </div>
         </div>
     </div>
-
+    <!--Competition Details Modal-->
     <div class="modal modal-lg fade" id="competitionsModal" tabindex="-1" aria-labelledby="competitionsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -119,15 +116,165 @@
                     </div>
                     <div class="row border-bottom  my-1" data-bind="visible: selectedCompetition().Photo != '' && selectedCompetition().Photo != null">
                         <div class="col-3 photo"><b>Photo</b></div><div class="small col-9">
-                            <img class="img-thumbnail" data-bind="attr:{src: selectedCompetition().Photo}"><br />                        </div>
+                            <img class="img-thumbnail" data-bind="attr:{src: selectedCompetition().Photo}"><br />                        
+                        </div>
                     </div>
 
                     <div class="text-center"><b><h4>List of Games that had this competition</h4></b></div>
-                    <ul data-bind="foreach: participants">
-                        <li class="list-group-item d-flex align-items-center" >
-                            <span data-bind="text: Name"></span>
-                        </li>
-                    </ul>
+                    <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: participants">
+                        <div class="col-md-3 col-sm-6 col-xs-12 mb-4">
+                          <div class="card h-100" id="card-games" data-bind="click: $parent.showGameDetails">
+                            <img class="card-img-top img-fluid" id="logo_game" data-bind="attr: { src: Logo }" alt="Game logo" style="height: 150px;">
+                            <div class="card-body">
+                                <h5 class="card-title" data-bind="text: Name"></h5>
+                                <p class="card-text">
+                                    Year: <span data-bind="text: Year"></span><br />
+                                    City: <span data-bind="text: CityName"></span><br />
+                                    Country: <span data-bind="text: CountryName"></span>
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-default btn-xs">
+                                    <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>~
+    <!---------------------------------------------------->
+
+    <!--Games Details Modal-->
+    <div class="modal modal-lg fade" id="gamesModal" tabindex="-1" aria-labelledby="gamesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="gamesModalLabel" data-bind="text: selectedGame().Name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Name</b></div><div class="col-9" data-bind="text: selectedGame().Name"></div>
+                    </div>
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Country / City</b></div><div class="col-9" data-bind="text: selectedGame().CountryName + ' / ' + selectedGame().City"></div>
+                    </div>
+                    
+                    <div class="row border-bottom  my-1" data-bind="visible: selectedGame().Photo != '' && selectedGame().Photo != null">
+                        <div class="col-3 photo"><b>Photo</b></div><div class="small col-9">
+                            <img class="img-thumbnail" data-bind="attr:{src: selectedGame().Photo}"><br />
+                        </div>
+                    </div>
+                    <div class="row border-bottom  my-1" data-bind="visible: selectedGame().Logo != '' && selectedGame().Logo != null">
+                        <div class="col-3 photo"><b>Logo</b></div><div class="small col-9">
+                            <img class="img-thumbnail" data-bind="attr:{src: selectedGame().Logo}"><br />                        
+                        </div>
+                    </div>
+
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Athletes</h3>
+                        <hr>
+                        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: athletes">
+                            <div class="card col-md-2 col-sm-3" id="athlete">
+                                <div class="card-body">
+                                    <!-- ko if: Photo == null-->
+                                    <img class="card-img-top rounded-circle" id="athlete_photo_games" data-bind="attr: { src: '/wwwroot/Projeto/Images/default_athlete.png'}, click: $parent.showAthleteDetails" />
+                                    <!-- /ko -->
+                                    <!-- ko if: Photo != null-->
+                                    <img class="card-img-top rounded-circle" id="athlete_photo_games" data-bind="attr: { src: Photo}, click: $parent.showAthleteDetails" />
+                                    <!-- /ko -->
+                                    <div class="row card-text">
+                                        <!--ko if: Name.length > 18-->
+                                        <div class="text-center col-md-12" data-bind="text: Name.slice(0,15) + '...'"></div> 
+                                        <!--/ko-->
+                                        <!--ko if: Name.length <= 18-->
+                                        <div class="text-center col-md-12" data-bind="text: Name"></div> 
+                                        <!--/ko-->                                        
+                                        <div><strong>Sex:</strong><span class="mx-1" data-bind="text: Sex"></span></div>
+                                        <!--ko if: BestPosition == 1-->
+                                        <div><strong>Best:</strong><img class="mx-1" src="/wwwroot/Projeto/Images/gold-medal.png" alt="Gold Medal" style="width: 25px; height: 25px;"></div> 
+                                        <!--/ko-->
+                                        <!--ko if: BestPosition == 2-->
+                                        <div><strong>Best:</strong><img class="mx-1" src="/wwwroot/Projeto/Images/silver-medal.png" alt="Silver Medal" style="width: 25px; height: 25px;"></div> 
+                                        <!--/ko-->
+                                        <!--ko if: BestPosition == 3-->
+                                        <div><strong>Best:</strong><img class="mx-1" src="/wwwroot/Projeto/Images/bronze-medal.png" alt="Bronze Medal" style="width: 25px; height: 25px;"></div> 
+                                        <!--/ko-->
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-default btn-xs">
+                                        <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                                    </button>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Competitions</h3>
+                        <hr>
+                        <div class="container" data-bind="foreach: modalities">
+                            <div class="card mb-3" id="card-modality">
+                                <div class="card-header text-center" id="card-header-modality">
+                                    <h5 data-bind="text: name"></h5>
+                                </div>
+                                <div class="card-body" id="card-body-competitions">
+                                    <ul class="list-group list-group-flush">
+                                        <!-- ko foreach: competitions -->
+                                        <li class="list-group-item competition d-flex align-items-center" data-bind="attr: { 'data-competition-id': Id }">
+                                            <span data-bind="text: Name"></span>
+                                        </li>
+                                        <!--/ko-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!--ko if: medals().length > 0 -->
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Medals</h3>
+                        <hr>
+                        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: medals">
+                            <!--ko if: MedalId == 1-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/gold-medal.png" alt="Gold Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                            <!--ko if: MedalId == 2-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/silver-medal.png" alt="Silver Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                            <!--ko if: MedalId == 3-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/bronze-medal.png" alt="Bronze Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                        </div>
+                    </div>
+                    <!--/ko-->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -135,6 +282,137 @@
             </div>
         </div>
     </div>
+    <!--------------------------------------------------------------------------->
+    
+    <!--Athletes Details Modal-->
+    <div class="modal modal-lg fade" id="athletesModal" tabindex="-1" aria-labelledby="athletesModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="athletesModalLabel" data-bind="text: selectedAthlete().Name"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row my-1">
+                        <div class="col-3"><b>Athlete Id</b></div><div class="col-9" data-bind="text: selectedAthlete().Id"></div>
+                    </div>
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Name</b></div><div class="col-9" data-bind="text: selectedAthlete().Name"></div>
+                    </div>
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Sex</b></div><div class="col-9" data-bind="text: selectedAthlete().Sex"></div>
+                    </div>
+                    <div class="row  my-1"><div class="col-3"><b>Height / Weight</b></div>
+                        <div class="col-9" data-bind="text: parseFloat(selectedAthlete().Height)/100 + 'm / ' + selectedAthlete().Weight + 'Kg'"></div>
+                    </div>
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Born (Date/Place)</b></div><div class="col-9" data-bind="text: Born"></div>
+                    </div>
+                    <div class="row  my-1">
+                        <div class="col-3"><b>Died (Date/Place)</b></div><div class="col-9" data-bind="text: Died"></div>
+                    </div>
+                    <div class="row border-bottom  my-1" data-bind="visible: selectedAthlete().Photo != '' && selectedAthlete().Photo != null">
+                        <div class="col-3 photo"><b>Photo</b></div><div class="small col-9">
+                            <img class="img-thumbnail" data-bind="attr:{src: selectedAthlete().Photo}"><br />
+                            <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: selectedAthlete().Photo }, text : selectedAthlete().Photo" target="_blank"></a>]
+                        </div>
+                    </div>
+
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Games Played</h3>
+                        <hr>
+                        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: games">
+                            <div class="col-md-3 col-sm-6 col-xs-12 mb-4">
+                              <div class="card h-100" id="card-games" data-bind="click: $parent.showGameDetails">
+                                <img class="card-img-top img-fluid" id="logo_game" data-bind="attr: { src: Logo }" alt="Game logo" style="height: 150px;">
+                                <div class="card-body">
+                                    <h5 class="card-title" data-bind="text: Name"></h5>
+                                    <p class="card-text">
+                                        Year: <span data-bind="text: Year"></span><br />
+                                        City: <span data-bind="text: CityName"></span><br />
+                                        Country: <span data-bind="text: CountryName"></span>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-default btn-xs">
+                                        <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Selecione para adicionar aos favoritos"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Competitions</h3>
+                        <hr>
+                        <div class="container" data-bind="foreach: modalities">
+                            <div class="card mb-3" id="card-modality">
+                                <div class="card-header text-center" id="card-header-modality">
+                                    <h5 data-bind="text: name"></h5>
+                                </div>
+                                <div class="card-body" id="card-body-competitions">
+                                    <ul class="list-group list-group-flush">
+                                        <!-- ko foreach: competitions -->
+                                        <li class="list-group-item competition d-flex align-items-center" data-bind="attr: { 'data-competition-id': Id }">
+                                            <span data-bind="text: Name"></span>
+                                        </li>
+                                        <!--/ko-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <!--ko if: medals().length > 0 -->
+                    <div class="py-2 border-bottom mb-3">
+                        <h3 class="text-center">Medals</h3>
+                        <hr>
+                        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: medals">
+                            <!--ko if: MedalId == 1-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/gold-medal.png" alt="Gold Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                            <!--ko if: MedalId == 2-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/silver-medal.png" alt="Silver Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                            <!--ko if: MedalId == 3-->
+                            <div class="card col-md-2 col-sm-3" id="medal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6" data-bind="text: Counter"></div>
+                                        <div class="col-6"><img src="/wwwroot/Projeto/Images/bronze-medal.png" alt="Bronze Medal" style="width: 25px; height: 25px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ko-->
+                        </div>
+                    </div>
+                    <!--/ko-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------------------------------->
+
+
+
+
     <!-- End of Working Area -->
     <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container small">

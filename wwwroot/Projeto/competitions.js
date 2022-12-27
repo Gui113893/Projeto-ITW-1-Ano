@@ -46,6 +46,14 @@ var vm = function () {
 
     self.selectedCompetition = ko.observable({});
     self.participants = ko.observableArray([]);
+    self.selectedGame = ko.observable({});
+    self.athletes = ko.observableArray([]);
+    self.modalities = ko.observableArray([]);
+    self.medals = ko.observableArray([]);
+    self.selectedAthlete = ko.observable({});
+    self.Born = ko.observable('');
+    self.Died = ko.observable('');
+    self.games = ko.observableArray([]);
 
 
     //--- Page Events
@@ -88,9 +96,80 @@ var vm = function () {
                     self.selectedCompetition(data);
                     self.participants(data.Participant);
 
+                    $(".modal").modal("hide");
                     $("#competitionsModal").modal("show");
                 });
             });
+        });
+    };
+
+    self.showGameDetails = function(game){
+        
+        ajaxHelper(`http://192.168.160.58/Olympics/api/games/FullDetails?id=${game.Id}`, "GET").done(function(data){
+            self.selectedGame(data);
+            self.athletes(data.Athletes);
+            self.medals(data.Medals);
+
+            data.Competitions.forEach(function(record) {
+                // Check if a modality with the same name already exists in the array
+                var modality = self.modalities().find(function(modality) {
+                    return modality.name === record.Modality;
+                });
+                // If the modality doesn't exist, create a new object for it
+                if (!modality) {
+                    modality = { name: record.Modality, competitions: [] };
+                    self.modalities().push(modality);
+                };
+                // Add the competition to the modality's array
+                modality.competitions.push(record);
+            });
+            self.modalities(self.modalities());
+
+            console.log(data);
+            $(".modal").modal("hide");
+            $("#gamesModal").modal("show");
+        });
+    };
+
+    self.showAthleteDetails = function(athlete) {
+
+        ajaxHelper(`http://192.168.160.58/Olympics/api/Athletes/FullDetails?id=${athlete.Id}`, "GET").done(function(data){
+            self.selectedAthlete(data);
+
+            if (data.BornDate == null){
+                self.Born("null / " + data.BornPlace);
+            } else {
+                self.Born(data.BornDate.slice(0, 10) + " / " + data.BornPlace);
+            };
+
+
+            if (data.DiedDate == null) {
+                self.Died("null / " + data.DiedPlace);
+            } else {
+                self.Died(data.DiedDate.slice(0, 10) + " / " + data.DiedPlace);
+            };
+            
+            self.games(data.Games);
+            self.medals(data.Medals); 
+
+            data.Competitions.forEach(function(record) {
+                // Check if a modality with the same name already exists in the array
+                var modality = self.modalities().find(function(modality) {
+                    return modality.name === record.Modality;
+                });
+                // If the modality doesn't exist, create a new object for it
+                if (!modality) {
+                    modality = { name: record.Modality, competitions: [] };
+                    self.modalities().push(modality);
+                };
+                // Add the competition to the modality's array
+                modality.competitions.push(record);
+            });
+            self.modalities(self.modalities());
+
+            console.log(data);
+            $(".modal").modal("hide");
+            $("#athletesModal").modal("show");
         });
     };
 
