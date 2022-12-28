@@ -14,12 +14,75 @@
     <link rel="stylesheet" href="/wwwroot/lib/jquery-ui/dist/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="myCSS.css" />
     <style>
-        .carousel { width: 100%; margin: 0 auto; }
-        .carousel-item { z-index: -100; height: 800px; background-position: center center; background-repeat: no-repeat; background-size: cover; }
-            .carousel-item:nth-child(1) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bc/Beijing_China_Beijing-National-Stadium-02.jpg'); }
-            .carousel-item:nth-child(2) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1b/Richmond_Olympic_Oval_front_view.jpg'); }
-            .carousel-item:nth-child(3) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/34/Rio2016_julho_VilaAtletas_Barra_002_2659_-c-2016_GabrielHeusi_HeusiAction.jpg'); }
-            .carousel-item:nth-child(4) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/9d/New_national_stadium_tokyo_1.jpg'); }
+      .carousel { width: 100%; margin: 0 auto;}
+      .carousel-item { z-index: -100; height: 400px; background-position: center center; background-repeat: no-repeat; background-size: cover; border-radius: 10px;}
+      .carousel-item:nth-child(1) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bc/Beijing_China_Beijing-National-Stadium-02.jpg'); }
+      .carousel-item:nth-child(2) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1b/Richmond_Olympic_Oval_front_view.jpg'); }
+      .carousel-item:nth-child(3) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/34/Rio2016_julho_VilaAtletas_Barra_002_2659_-c-2016_GabrielHeusi_HeusiAction.jpg'); }
+      .carousel-item:nth-child(4) { background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/9d/New_national_stadium_tokyo_1.jpg'); }
+
+      .hidden {
+        opacity: 0;
+        filter: blur(5px);
+        transition: all 1s;
+        transform: translateX(-100%);
+      }         
+      .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+      }
+
+      .lema:nth-child(3){
+        transition-delay: 200ms;
+      }
+
+      .lema:nth-child(5){
+        transition-delay: 400ms;
+      }
+
+      #Beijing {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/b/bc/Beijing_China_Beijing-National-Stadium-02.jpg"); 
+        background-position: center center; 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        border-radius: 10px;
+      }
+
+      #Vancouver {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/1/1b/Richmond_Olympic_Oval_front_view.jpg"); 
+        background-position: center center; 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        border-radius: 10px;
+      }
+
+      #Rio {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/34/Rio2016_julho_VilaAtletas_Barra_002_2659_-c-2016_GabrielHeusi_HeusiAction.jpg"); 
+        background-position: center center; 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        border-radius: 10px;
+      }
+
+      #Tokio {
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/9d/New_national_stadium_tokyo_1.jpg"); 
+        background-position: center center; 
+        background-repeat: no-repeat;
+        background-size: cover; 
+        border-radius: 10px;
+      }
+
+      .row-games {
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2);
+      }
+
+      
+
+
+
+
     </style>
 </head>
 <body id="index_body">
@@ -79,7 +142,36 @@
             </div>
         </div>    
 
-        <div id="myCarousel" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+        
+        <!--Container Lema-->
+        <div class="container border-top border-bottom">
+            <div class="row justify-content-between">
+              <div class="col-md-2 text-center justify-content-center align-content-center lema hidden">
+                <h1 style="margin-left: 50px;">Citius</h1>
+                <img class="rounded-circle" src="/wwwroot/Projeto/Images/citius.svg" alt="Citius" style="width: 250px; height: 250px; border: 1px solid #ccc; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2); object-fit: contain;">
+              </div>
+              <div class="col-md-2 text-center justify-content-center align-content-center">
+                <img class="mt-5" src="/wwwroot/Projeto/Images/Olympic_Rings.svg" style="width: 250px; height: 250px; object-fit: contain;">
+              </div>
+              <div class="col-md-2 text-center justify-content-center align-content-center lema hidden">
+                <h1 style="margin-left: 50px;">Altius</h1>
+                <img class="rounded-circle" src="/wwwroot/Projeto/Images/altius.png" alt="Altius" style="width: 250px; height: 250px; border: 1px solid #ccc; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2); object-fit: contain;">
+              </div>
+              <div class="col-md-2 text-center justify-content-center align-content-center">
+                <img class="mt-5" src="/wwwroot/Projeto/Images/Olympic_Rings.svg" style="width: 250px; height: 250px; object-fit: contain;">
+              </div>
+              <div class="col-md-2 text-center justify-content-center align-content-center lema hidden">
+                <h1 style="margin-left: 50px;">Fortius</h1>
+                <img class="rounded-circle" src="/wwwroot/Projeto/Images/fortius.png" alt="Fortius" style="width: 250px; height: 250px; border: 1px solid #ccc; box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.2); object-fit: contain;">
+              </div>
+            </div>
+        </div>
+        <!--------------------------------------------------->
+
+        <!--Container Featured Games-->
+        <div class="container mt-5">
+          <div class="row text-center hidden mb-3"><h1><strong> Featured Games</strong></h1></div>
+          <div id="myCarousel" class="carousel slide carousel-fade mb-5 hidden" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
                 <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -89,25 +181,25 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="carousel-caption d-none d-md-block">
-                        <div class="display-1">Beijing 2008</div>
+                        <div class="display-1" aria-label="Beijing">Beijing 2008</div>
                         <p>The 2008 Summer Olympics, officially the Games of the XXIX Olympiad and also known as Beijing 2008, were an international multisport event held from 8 to 24 August 2008, in Beijing, China.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-caption d-none d-md-block">
-                        <div class="display-1">Vancouver 2010</div>
+                        <div class="display-1" aria-label="Vancouver">Vancouver 2010</div>
                         <p>The 2010 Winter Olympics, officially known as the XXI Olympic Winter Games and also known as Vancouver 2010, were an international winter multi-sport event held from February 12 to 28, 2010 in Vancouver, British Columbia, Canada, with some events held in the surrounding suburbs of Richmond, West Vancouver and the University of British Columbia, and in the nearby resort town of Whistler.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-caption d-none d-md-block">
-                        <div class="display-1">Rio de Janeiro 2016</div>
+                        <div class="display-1" aria-label="Rio">Rio de Janeiro 2016</div>
                         <p>The 2016 Summer Olympics, officially the Games of the XXXI Olympiad and also known as Rio 2016, was an international multi-sport event held from 5 to 21 August 2016 in Rio de Janeiro, Brazil.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-caption d-none d-md-block">
-                        <div class="display-1">Tokio 2020</div>
+                        <div class="display-1" aria-label="Tokio">Tokio 2020</div>
                         <p>The 2020 Summer Olympics, officially the Games of the XXXII Olympiad and also known as Tokyo 2020, was an international multi-sport event held from 23 July to 8 August 2021 in Tokyo, Japan.</p>
                     </div>
                 </div>
@@ -121,15 +213,48 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-2 col-md-2 col-lg-2">Citius</div>
-                <div class="col-sm-3 col-md-3 col-lg-3"><img src="/wwwroot/Projeto/Images/Olympic_Rings.svg" width="75px" height="75px"/></div>
-                <div class="col-sm-2 col-md-2 col-lg-2">Altius</div>
-                <div class="col-sm-3 col-md-3 col-lg-3"><img src="/wwwroot/Projeto/Images/Olympic_Rings.svg" width="75px" height="75px"/></div>
-                <div class="col-sm-2 col-md-2 col-lg-2">Fortius</div>
-            </div>
+        <div class="row row-games mt-2 hidden">
+          <div class="col-md-3 col-sm-12" id="Beijing"></div>
+          <div class="col-md-8 align-content-center justify-content-center mb-3">
+            <div class="row"><h5 class="text-center"><strong>Beijing 2008</strong></h5></div>
+            <div class="row mt-2 mx-2 text-center">The Beijing 2008 Olympic Games were held in Beijing, China from August 8 to August 24. A record number of 204 countries participated, with 11,028 athletes competing in 28 sports. Notable achievements included Usain Bolt setting new world records in the men's 100m and 200m sprints and Michael Phelps winning eight gold medals in swimming. The Chinese men's and women's gymnastics teams and the US men's and women's basketball teams also won gold medals. Beach volleyball and BMX cycling were introduced as new sports, and softball and baseball returned to the Olympic program. The Beijing Olympics were a major success and helped to showcase China's growing presence on the global stage.</div>
+          </div>
         </div>
+        <div class="row  row-games mt-2 hidden">
+          <div class="col-md-3 col-sm-12" id="Vancouver"></div>
+          <div class="col-md-8 align-content-center justify-content-center mb-3">
+            <div class="row"><h5 class="text-center"><strong>Vancouver 2010</strong></h5></div>
+            <div class="row mt-2 mx-2 text-center">The Vancouver 2010 Olympic Winter Games were held in British Columbia, Canada from February 12 to February 28, 2010. A total of 82 countries participated, with 2,632 athletes competing in 15 sports. The Canadian men's and women's ice hockey teams won gold, and the US won 37 medals, including 9 gold. The German and Norwegian cross-country skiing teams and the South Korean and Chinese figure skating pairs also had successful performances. Ski cross and snowboard cross were introduced as new sports, and ice hockey returned to the Winter Olympics after a 12-year absence. The Vancouver 2010 Olympic Winter Games were a major success and helped to showcase Canada's athletic talent and cultural diversity.</div>
+          </div>
+        </div>
+        <div class="row  row-games mt-2 hidden">
+          <div class="col-md-3 col-sm-12" id="Rio"></div>
+          <div class="col-md-8 align-content-center justify-content-center mb-3">
+            <div class="row"><h5 class="text-center"><strong>Rio de Janeiro 2016</strong></h5></div>
+            <div class="row mt-2 mx-2 text-center">The Rio de Janeiro 2016 Olympic Games were held in Rio de Janeiro, Brazil from August 5 to August 21, 2016. A total of 207 countries participated, with 11,303 athletes competing in 28 sports. Usain Bolt won three gold medals in the men's 100m, 200m, and 4x100m relay, and Simone Biles won four gold medals in gymnastics. The US won 121 medals, including 46 gold. Golf and rugby sevens were introduced as new sports, and the Chinese diving and swimming teams had successful performances. The Rio 2016 Olympic Games were a major success and helped to showcase Brazil's athletic talent and cultural diversity.</div>
+          </div>
+        </div>
+        <div class="row  row-games mt-2 hidden">
+          <div class="col-md-3 col-sm-12" id="Tokio"></div>
+          <div class="col-md-8 align-content-center justify-content-center mb-3">
+            <div class="row"><h5 class="text-center"><strong>Tokio 2020</strong></h5></div>
+            <div class="row mt-2 mx-2 text-center">The Tokyo 2020 Olympic Games were held in Tokyo, Japan from July 23 to August 8, 2021. A total of 206 countries participated, with 11,091 athletes competing in 33 sports. Simone Biles won six gold medals in gymnastics, and the US won 107 medals, including 46 gold. The Japanese and Chinese swimming and diving teams had successful performances, and baseball and softball returned to the Olympic program. The games were held during the COVID-19 pandemic and were a major success despite the challenges. They helped to showcase Japan's athletic talent and cultural traditions.</div>
+          </div>
+        </div>
+        <div class="row mt-4 mb-4 justify-content-center align-content-center">
+          <div class="col-md-3 hidden text-center"><button type="button" id="viewmore_games" class="btn btn-secondary btn-lg">View More</button></div>
+        </div>
+        </div>
+        <!------------------------------------------------------------------------------------------------------------------->
+
+        <!--Athletes per Games-->
+        <div class="container mt-5 border-top">
+          <div class="row text-center hidden mb-3"><h1><strong>Athletes Per Game</strong></h1></div>
+          <canvas class="hidden" id="myChart" width="100%" height="50px"></canvas>
+        </div>
+        <!-------------------------------------------------------------------------------------------------------------------->
+
+
     </div>
 
 
@@ -147,6 +272,7 @@
     <script src="/wwwroot/lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="/wwwroot/lib/jquery/dist/jquery.min.js"></script>
     <script src="/wwwroot/lib/jquery-ui/dist/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

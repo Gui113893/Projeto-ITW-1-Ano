@@ -109,11 +109,6 @@ img.img-thumbnail {
   background-size: cover;
 }
 
-h1 {
-  color: #000080;
-}
-
-
 #logo_game {
   height: 250px;
   object-fit: contain;
@@ -313,4 +308,5 @@ h1 {
 #button-container {
   margin-top: 40%;
 }
+
 
