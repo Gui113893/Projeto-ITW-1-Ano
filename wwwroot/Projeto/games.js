@@ -56,20 +56,75 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getGames...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        ajaxHelper(composedUri, 'GET').done(function (data) {
-            console.log(data);
-            hideLoading();
-            self.records(data.Records);
-            self.currentPage(data.CurrentPage);
-            self.hasNext(data.HasNext);
-            self.hasPrevious(data.HasPrevious);
-            self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalRecords);
-            //self.SetFavourites();
+        $('#search-bar').autocomplete({
+            source: function(request, response) {
+              $.ajax({
+                url: `http://192.168.160.58/Olympics/api/games/SearchByName?q=${request.term}`,
+                success: function(data) {
+                    var labels = data.map(function(item){return item.Name});
+                    response(labels);
+                }
+              });
+            }
+        });
 
+        if ($('#search-bar').val().length == 0) {
+            console.log('CALL: getGames...');
+            var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+            ajaxHelper(composedUri, 'GET').done(function (data) {
+                console.log(data);
+                hideLoading();
+                self.records(data.Records);
+                self.currentPage(data.CurrentPage);
+                self.hasNext(data.HasNext);
+                self.hasPrevious(data.HasPrevious);
+                self.pagesize(data.PageSize)
+                self.totalPages(data.TotalPages);
+                self.totalRecords(data.TotalRecords);
+                //self.SetFavourites();
+            });
+        }
+        // Handle search button clicks
+        $('#search-button').click(function() {
+            // Get the search query from the search bar
+            var query = $('#search-bar').val();
+            console.log(query);
+
+            if (query.length == 0){
+                console.log('CALL: getGames...');
+                var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data);
+                    hideLoading();
+                    self.records(data.Records);
+                    self.currentPage(data.CurrentPage);
+                    self.hasNext(data.HasNext);
+                    self.hasPrevious(data.HasPrevious);
+                    self.pagesize(data.PageSize)
+                    self.totalPages(data.TotalPages);
+                    self.totalRecords(data.TotalRecords);
+                    //self.SetFavourites();
+                });
+            } else {
+                // Make an AJAX call to the API with the search query
+                $.ajax({
+                    url: `http://192.168.160.58/Olympics/api/games/SearchByName?q=${query}`,
+                    success: function(data) {
+                      // Clear the search results div
+                      $('#games-container').html('');
+                    
+                      self.records(data);
+                      console.log(self.records());
+                      self.currentPage(1);
+                      self.hasNext(false);
+                      self.hasPrevious(false);
+                      self.pagesize(data.length)
+                      self.totalPages(1);
+                      self.totalRecords(data.length);
+                    
+                    }
+                });
+            };
         });
     };
 

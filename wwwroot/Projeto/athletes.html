@@ -13,6 +13,37 @@
     <link href="/wwwroot/lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/wwwroot/lib/jquery-ui/dist/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="myCSS.css" />
+    <style>
+        ::-webkit-scrollbar-thumb {
+            background-color: #ffd700; 
+        }
+
+        #search-button {
+            background-color: #e5e860;
+        }
+
+        #search-box {
+            background-color: #ffd700;
+        }
+
+        #search-button i{
+            color: rgb(33, 32, 32);
+        }
+
+        #search-bar::placeholder {
+            color: rgb(33, 32, 32);
+        }
+
+        #search-bar {
+            color: rgb(33, 32, 32);
+        }
+
+        #search-button:hover {
+            background-color: #8a9125;
+        }
+
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -66,10 +97,19 @@
         </div>
         <!-- /ko -->
         
+        <!--Search Bar-->
+        <div class="row mt-3 mb-3 justify-content-center">
+            <div class="col-md-8 text-center justify-content-center" id="search-box">
+                <input id="search-bar" type="text" placeholder="Search for an athlete">
+                <button id="search-button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <!---------------------------->
+
         <!-- Athletes -->
         <h3 class="text-center">Athletes</h3>
         <!-- Add a card for each athlete -->
-        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: records">
+        <div class="container d-flex flex-wrap justify-content-center align-content-center" id="athletes-container" data-bind="foreach: records">
             <div class="card col-md-2 col-sm-3" id="athlete">
                 <div class="card-body">
                     <!-- ko if: Photo == null-->

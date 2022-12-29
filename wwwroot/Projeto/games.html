@@ -13,6 +13,37 @@
     <link href="/wwwroot/lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/wwwroot/lib/jquery-ui/dist/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="myCSS.css" />
+    <style>
+        ::-webkit-scrollbar-thumb {
+            background-color: #228b22; 
+        }
+
+        #search-button {
+            background-color: #5df23c;
+        }
+
+        #search-box {
+            background-color: #228b22;
+        }
+
+        #search-button i{
+            color: rgb(33, 32, 32);
+        }
+
+        #search-bar::placeholder {
+            color: white;
+        }
+
+        #search-bar {
+            color: white;
+        }
+
+        #search-button:hover {
+            background-color: #216a1b;
+        }
+
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -66,7 +97,16 @@
         </div>
         <!-- /ko -->
 
-        <div class="container d-flex flex-wrap justify-content-center align-content-center" data-bind="foreach: records">
+        <!--Search Bar-->
+        <div class="row mt-3 mb-3 justify-content-center">
+            <div class="col-md-8 text-center justify-content-center" id="search-box">
+                <input id="search-bar" type="text" placeholder="Search for a game">
+                <button id="search-button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <!---------------------------->
+
+        <div class="container d-flex flex-wrap justify-content-center align-content-center" id="games-container" data-bind="foreach: records">
             <div class="col-md-3 col-sm-6 col-xs-12 mb-4">
               <div class="card h-100" id="card-games" data-bind="click: $parent.showGameDetails">
                 <img class="card-img-top img-fluid" id="logo_game" data-bind="attr: { src: Logo }" alt="Game logo">

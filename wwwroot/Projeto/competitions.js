@@ -58,49 +58,168 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getCompetitions...');
-        var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
-        ajaxHelper(composedUri, 'GET').done(function (data) {
-            console.log(data);
-            hideLoading();
-            self.currentPage(data.CurrentPage);
-            self.hasNext(data.HasNext);
-            self.hasPrevious(data.HasPrevious);
-            self.records(data.Records);
-            self.pagesize(data.PageSize)
-            self.totalPages(data.TotalPages);
-            self.totalRecords(data.TotalRecords);
-            //self.SetFavourites();
-
-            // Iterate through the records
-            self.records().forEach(function(record) {
-                // Check if a modality with the same name already exists in the array
-                var modality = self.modalities().find(function(modality) {
-                  return modality.name === record.Modality;
-                });
-                // If the modality doesn't exist, create a new object for it
-                if (!modality) {
-                  modality = { name: record.Modality, competitions: [] };
-                  self.modalities().push(modality);
+        
+        $('#search-bar').autocomplete({
+            source: function(request, response) {
+              $.ajax({
+                url: `http://192.168.160.58/Olympics/api/competitions/SearchByName?q=${request.term}`,
+                success: function(data) {
+                    var labels = data.map(function(item){return item.Name});
+                    response(labels);
                 }
-                // Add the competition to the modality's array
-                modality.competitions.push(record);
-            });
+              });
+            }
+        });
 
-            self.modalities(self.modalities());
-            
-            $('.competition').click(function() {
-                // Get the competition id from the data attribute
-                var competitionId = $(this).data('competition-id');
-                ajaxHelper(`http://192.168.160.58/Olympics/api/competitions/${competitionId}`, "GET").done(function(data) {
-                    self.selectedCompetition(data);
-                    self.participants(data.Participant);
+        if ($("#search-bar").val().length == 0){
+            console.log('CALL: getCompetitions...');
+            var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+            ajaxHelper(composedUri, 'GET').done(function (data) {
+                console.log(data);
+                hideLoading();
+                self.currentPage(data.CurrentPage);
+                self.hasNext(data.HasNext);
+                self.hasPrevious(data.HasPrevious);
+                self.records(data.Records);
+                self.pagesize(data.PageSize)
+                self.totalPages(data.TotalPages);
+                self.totalRecords(data.TotalRecords);
+                //self.SetFavourites();
 
-                    $(".modal").modal("hide");
-                    $("#competitionsModal").modal("show");
+                // Iterate through the records
+                self.records().forEach(function(record) {
+                    // Check if a modality with the same name already exists in the array
+                    var modality = self.modalities().find(function(modality) {
+                      return modality.name === record.Modality;
+                    });
+                    // If the modality doesn't exist, create a new object for it
+                    if (!modality) {
+                      modality = { name: record.Modality, competitions: [] };
+                      self.modalities().push(modality);
+                    }
+                    // Add the competition to the modality's array
+                    modality.competitions.push(record);
+                });
+
+                self.modalities(self.modalities());
+
+                $('.competition').click(function() {
+                    // Get the competition id from the data attribute
+                    var competitionId = $(this).data('competition-id');
+                    ajaxHelper(`http://192.168.160.58/Olympics/api/competitions/${competitionId}`, "GET").done(function(data) {
+                        self.selectedCompetition(data);
+                        self.participants(data.Participant);
+
+                        $(".modal").modal("hide");
+                        $("#competitionsModal").modal("show");
+                    });
                 });
             });
+        }
+
+        $('#search-button').click(function() {
+            // Get the search query from the search bar
+            var query = $('#search-bar').val();
+            console.log(query);
+
+            if (query.length == 0){
+                console.log('CALL: getCompetitions...');
+                var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
+                ajaxHelper(composedUri, 'GET').done(function (data) {
+                    console.log(data);
+                    hideLoading();
+                    self.currentPage(data.CurrentPage);
+                    self.hasNext(data.HasNext);
+                    self.hasPrevious(data.HasPrevious);
+                    self.records(data.Records);
+                    self.pagesize(data.PageSize)
+                    self.totalPages(data.TotalPages);
+                    self.totalRecords(data.TotalRecords);
+                    //self.SetFavourites();
+
+                    // Iterate through the records
+                    self.records().forEach(function(record) {
+                        // Check if a modality with the same name already exists in the array
+                        var modality = self.modalities().find(function(modality) {
+                          return modality.name === record.Modality;
+                        });
+                        // If the modality doesn't exist, create a new object for it
+                        if (!modality) {
+                          modality = { name: record.Modality, competitions: [] };
+                          self.modalities().push(modality);
+                        }
+                        // Add the competition to the modality's array
+                        modality.competitions.push(record);
+                    });
+
+                    self.modalities(self.modalities());
+
+                    $('.competition').click(function() {
+                        // Get the competition id from the data attribute
+                        var competitionId = $(this).data('competition-id');
+                        ajaxHelper(`http://192.168.160.58/Olympics/api/competitions/${competitionId}`, "GET").done(function(data) {
+                            self.selectedCompetition(data);
+                            self.participants(data.Participant);
+
+                            $(".modal").modal("hide");
+                            $("#competitionsModal").modal("show");
+                        });
+                    });
+                });
+            } else {
+                // Make an AJAX call to the API with the search query
+                $.ajax({
+                    url: `http://192.168.160.58/Olympics/api/competitions/SearchByName?q=${query}`,
+                    success: function(data) {
+                      // Clear the search results div
+                        $('#competitions-container').html('');
+
+                        console.log(data);
+                    
+                        self.currentPage(1);
+                        self.hasNext(false);
+                        self.hasPrevious(false);
+                        self.records(data);
+                        self.pagesize(data.length)
+                        self.totalPages(1);
+                        self.totalRecords(data.length);
+                        //self.SetFavourites();
+                        self.modalities([]);
+                        // Iterate through the records
+                        self.records().forEach(function(record) {
+                            // Check if a modality with the same name already exists in the array
+                            var modality = self.modalities().find(function(modality) {
+                              return modality.name === record.Modality;
+                            });
+                            // If the modality doesn't exist, create a new object for it
+                            if (!modality) {
+                              modality = { name: record.Modality, competitions: [] };
+                              self.modalities().push(modality);
+                            }
+                            // Add the competition to the modality's array
+                            modality.competitions.push(record);
+                        });
+
+
+                        self.modalities(self.modalities());
+
+                        $('.competition').click(function() {
+                            // Get the competition id from the data attribute
+                            var competitionId = $(this).data('competition-id');
+                            ajaxHelper(`http://192.168.160.58/Olympics/api/competitions/${competitionId}`, "GET").done(function(data) {
+                                self.selectedCompetition(data);
+                                self.participants(data.Participant);
+
+                                $(".modal").modal("hide");
+                                $("#competitionsModal").modal("show");
+                            });
+                        });
+                    
+                    }
+                });
+            };
         });
+
     };
 
     self.showGameDetails = function(game){

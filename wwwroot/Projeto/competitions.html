@@ -13,6 +13,37 @@
     <link href="/wwwroot/lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/wwwroot/lib/jquery-ui/dist/themes/base/jquery-ui.min.css">
     <link rel="stylesheet" href="myCSS.css" />
+    <style>
+        ::-webkit-scrollbar-thumb {
+            background-color: #3f3e3e; 
+        }
+
+        #search-button {
+            background-color: #6b6b66;
+        }
+
+        #search-box {
+            background-color: #3f3e3e;
+        }
+
+        #search-button i{
+            color: white;
+        }
+
+        #search-bar::placeholder {
+            color: white;
+        }
+
+        #search-bar {
+            color: white;
+        }
+
+        #search-button:hover {
+            background-color: #353531;
+        }
+
+
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -66,7 +97,16 @@
         </div>
         <!-- /ko -->
 
-        <div class="container" data-bind="foreach: modalities">
+        <!--Search Bar-->
+        <div class="row mt-3 mb-3 justify-content-center">
+            <div class="col-md-8 text-center justify-content-center" id="search-box">
+                <input id="search-bar" type="text" placeholder="Search for a competition">
+                <button id="search-button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <!---------------------------->
+
+        <div class="container" data-bind="foreach: modalities" id="competitions-container">
             <div class="card mb-3" id="card-modality">
                 <div class="card-header text-center" id="card-header-modality">
                     <h5 data-bind="text: name"></h5>

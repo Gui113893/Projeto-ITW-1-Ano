@@ -246,21 +246,21 @@ img.img-thumbnail {
 @media screen and (max-width: 600px) {
   /* apply styles for screens with a width of 600px or less */
   #athlete_photo {
-    height: 175px;
+    height: 185px;
   }
 }
 
 @media screen and (min-width: 601px) and (max-width: 900px) {
   /* apply styles for screens with a width between 601px and 900px */
   #athlete_photo {
-    height: 120px;
+    height: 100px;
   }
 }
 
 @media screen and (min-width: 901px)  and (max-width: 1200px){
   /* apply styles for screens with a width of 901px or more */
   #athlete_photo {
-    height: 100px;
+    height: 85px;
   }
 
 }
@@ -310,3 +310,30 @@ img.img-thumbnail {
 }
 
 
+#search-bar {
+  width: 80%;
+  height: 50px;
+  background: transparent;
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 24px 20px;
+  font-size: 20px;
+}
+
+
+#search-button {
+  height: 50px;
+  width: 10%;
+  border: 0;
+  border-radius: 6rem;
+}
+
+#search-box{
+  opacity: 80%;
+  display: flex;
+  align-items: center;
+  border-radius: 6rem;
+  padding: 10px 20px;
+  backdrop-filter: blur(4px) saturate(180%);
+}
