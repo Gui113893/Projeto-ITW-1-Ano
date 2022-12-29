@@ -337,3 +337,7 @@ img.img-thumbnail {
   padding: 10px 20px;
   backdrop-filter: blur(4px) saturate(180%);
 }
+
+.card-nav {
+  cursor: pointer;
+}
