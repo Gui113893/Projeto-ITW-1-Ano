@@ -101,14 +101,12 @@
             </div>
         </div>
         <!---------------------------->
-
-        <ul class="list-group modalities" id="modalities-container">
-            <!-- ko foreach: records -->
+        
+        <ul class="list-group modalities" id="modalities-container" data-bind="foreach: records">
             <li class="list-group-item modality d-flex align-items-center" data-bind="click: $parent.showModalityDetails">
               <img class="rounded-circle" data-bind="attr: { src: Photo }" alt="Modality Photo">
               <span class="ml-2" data-bind="text: Name"></span>
             </li>
-            <!-- /ko -->
         </ul>       
            
     </div>

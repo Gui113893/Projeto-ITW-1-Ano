@@ -63,6 +63,7 @@ var vm = function () {
             source: function(request, response) {
               $.ajax({
                 url: `http://192.168.160.58/Olympics/api/athletes/SearchByName?q=${request.term}`,
+                type: "GET",
                 success: function(data) {
                     var labels = data.map(function(item){return item.Name});
                     response(labels);
@@ -112,6 +113,7 @@ var vm = function () {
                 // Make an AJAX call to the API with the search query
                 $.ajax({
                     url: `http://192.168.160.58/Olympics/api/athletes/SearchByName?q=${query}`,
+                    type: "GET",
                     success: function(data) {
                       // Clear the search results div
                       $('#athletes-container').html('');

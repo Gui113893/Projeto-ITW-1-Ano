@@ -63,6 +63,7 @@ var vm = function () {
             source: function(request, response) {
               $.ajax({
                 url: `http://192.168.160.58/Olympics/api/modalities/SearchByName?q=${request.term}`,
+                type: "GET",
                 success: function(data) {
                     var labels = data.map(function(item){return item.Name});
                     response(labels);
@@ -109,22 +110,16 @@ var vm = function () {
                     //self.SetFavourites();
                 });
             } else {
-                // Make an AJAX call to the API with the search query
-                $.ajax({
-                    url: `http://192.168.160.58/Olympics/api/modalities/SearchByName?q=${query}`,
-                    success: function(data) {
-                      // Clear the search results div
-                      $('#modalities-container').html('');                    
-                      self.records(data);
-                      console.log(self.records());
-                      self.currentPage(1);
-                      self.hasNext(false);
-                      self.hasPrevious(false);
-                      self.pagesize(data.length)
-                      self.totalPages(1);
-                      self.totalRecords(data.length);
-                    
-                    }
+                ajaxHelper(`http://192.168.160.58/Olympics/api/modalities/SearchByName?q=${query}`, "GET").done(function(data){
+                    $('#modalities-container').html('');                    
+                    self.records(data);
+                    console.log(self.records());
+                    self.currentPage(1);
+                    self.hasNext(false);
+                    self.hasPrevious(false);
+                    self.pagesize(data.length)
+                    self.totalPages(1);
+                    self.totalRecords(data.length);
                 });
             };
         });
