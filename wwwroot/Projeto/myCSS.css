@@ -87,7 +87,7 @@ img.img-thumbnail {
 }
 
 #athlete_photo_games {
-  height: 100px;
+  height: 85px;
   transition: transform 0.2s ease-in-out;
 }
 
@@ -246,6 +246,10 @@ img.img-thumbnail {
 @media screen and (max-width: 600px) {
   /* apply styles for screens with a width of 600px or less */
   #athlete_photo {
+    height: 185px;
+  }
+
+  #athlete_photo_games{
     height: 185px;
   }
 }

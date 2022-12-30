@@ -131,10 +131,10 @@ var vm = function () {
     };
 
     self.showGameDetails = function(game){
-        
+        var i = 20
         ajaxHelper(`http://192.168.160.58/Olympics/api/games/FullDetails?id=${game.Id}`, "GET").done(function(data){
             self.selectedGame(data);
-            self.athletes(data.Athletes);
+            self.athletes(data.Athletes.slice(0, i));
             self.medals(data.Medals);
 
             data.Competitions.forEach(function(record) {
@@ -167,7 +167,13 @@ var vm = function () {
                     $("#competitionsModal").modal("show");
                 });
             });
+
+            $("#viewmore_athletes").click(function(){
+                i = i + 20
+                self.athletes(data.Athletes.slice(0, i));
+            });
         });
+
     };
 
     self.showAthleteDetails = function(athlete) {
