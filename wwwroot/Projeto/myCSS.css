@@ -1,6 +1,6 @@
 ﻿body {
     font-family: 'Open Sans', sans-serif;
-    margin: 60px 0 60px 0;
+    margin: 100px 0 60px 0;
 }
 
 #index_body {
@@ -344,4 +344,29 @@ img.img-thumbnail {
 
 .card-nav {
   cursor: pointer;
+}
+
+#neubar {
+  box-shadow: 4px 6px 12px rgba(0,0,0,0.4)
+}
+ 
+.nav-item .active {
+  border-radius: 6px;
+}
+#neubar #navbarNavDropdown a:hover {
+  color: white;
+}
+#neubar .nav-item {
+  margin : auto 4px;
+}
+#neubar a {
+ 
+  padding-left:12px;
+  padding-right:12px;
+}
+#neubar .dropdown-menu {
+  background : #545454
+}
+a.navbar-brand {
+  color: #454545
 }

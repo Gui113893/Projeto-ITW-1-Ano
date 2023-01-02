@@ -42,27 +42,49 @@
             background-color: #353531;
         }
 
+        #neubar{
+            background-color: #3f3e3e;
+        }
+
+        .nav-item .active{
+            background: linear-gradient(145deg, #6b6b66, #464642);
+            box-shadow:  4px 4px 8px #464642,
+               -4px -4px 8px #6b6b66;
+        }
+
 
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-light fixed-top" id="neubar">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="Olympics"><img src="/wwwroot/Projeto/Images/Olympic_Rings.svg" height="40" /></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" id="athletes"     aria-current="page" href="athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a></li>
-                    <li class="nav-item"><a class="nav-link" id="competitions" aria-current="page" href="competitions.html"><i class="fa fa-trophy"></i> Competitions</a></li>
-                    <li class="nav-item"><a class="nav-link" id="countries"    aria-current="page" href="countries.html"><i class=" fa fa-flag-o text-danger"></i> Countries</a></li>
-                    <li class="nav-item"><a class="nav-link" id="games"        aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a></li>
-                    <li class="nav-item"><a class="nav-link" id="modalities"   aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a></li>
-                </ul>
-            </div>
+          <a class="navbar-brand" href="index.html"><img src="/wwwroot/Projeto/Images/Olympic_Rings.svg" height="60" /></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+       
+          <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item text-center">
+                <a class="nav-link mx-2" aria-current="page" href="athletes.html"><i class="fa fa-user-o text-warning"></i> Athletes</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link mx-2 active" aria-current="page" href="competitions.html"><i class="fa fa-trophy text-dark"></i> Competitions</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link mx-2" aria-current="page" href="countries.html"><i class=" fa fa-flag-o text-danger"></i> Countries</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link mx-2" aria-current="page" href="games.html"><i class="fa fa-map-marker text-success"></i> Games</a>
+              </li>
+              <li class="nav-item text-center">
+                <a class="nav-link mx-2"  aria-current="page" href="modalities.html"><i class="fa fa-soccer-ball-o text-primary"></i> Modalities</a>
+              </li>
+              
+            </ul>
+          </div>
         </div>
-    </nav>
+      </nav>
     <!-- Working Area -->
     <div class="container">
         <div class="border-bottom py-2 mb-2">
