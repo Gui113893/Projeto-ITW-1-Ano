@@ -60,6 +60,7 @@ var vm = function () {
     //--- Page Events
     self.activate = function (id) {
         $('#search-bar').autocomplete({
+            minLength: 3,
             source: function(request, response) {
               $.ajax({
                 url: `http://192.168.160.58/Olympics/api/modalities/SearchByName?q=${request.term}`,
